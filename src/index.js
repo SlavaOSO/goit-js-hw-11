@@ -96,17 +96,13 @@ const createMarkup = img => `
           </a>
         <div class="info">
               <p class="info-item">
-              <b>Likes<br>${img.likes}</b>
-              </p>
+              <b>Likes: </b>${img.likes}</p>
               <p class="info-item">
-              <b>Views<br>${img.views}</b>
-              </p>
+              <b>Views: </b>${img.views}</p>
               <p class="info-item">
-              <b>Comments<br>${img.comments}</b>
-              </p>
+              <b>Comments: </b>${img.comments}</p>
               <p class="info-item">
-              <b>Downloads<br>${img.downloads}</b>
-              </p>
+              <b>Downloads: </b>${img.downloads}</p>
         </div>
     </div>
 `; 
