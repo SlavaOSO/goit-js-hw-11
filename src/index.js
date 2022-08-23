@@ -32,7 +32,7 @@ refs.buttonLoad.classList.add('invisible');
 
 async function fetchImages() {
     try {
-        const response = await axios.get(`${BASE_URL}?key=29221253-dd17a46566e1be23f7ca8ff9b&image_type=photo&orientation=horizontal&safesearch=true&q=${nameSearch}&page=${currentPage}&per_page=${perPage}`);
+        const response = await axios.get(`${BASE_URL}?key=29463282-5fa376aa5c4acfb53aea1e092&image_type=photo&orientation=horizontal&safesearch=true&q=${nameSearch}&page=${currentPage}&per_page=${perPage}`);
          const arrayImages = await response.data.hits;
 
         if(arrayImages.length === 0) {
