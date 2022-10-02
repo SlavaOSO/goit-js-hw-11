@@ -23,8 +23,9 @@ let nameSearch = refs.input.value;
 let lightbox;
 let currentPage = 1;
 let perPage = 40;
-const totalPages = 500 / perPage;
-console.log(totalPages);
+let totalPages;
+// const totalPages = 500 / perPage;
+// console.log(totalPages);
 
 
 refs.buttonLoad.classList.add('invisible');
@@ -42,9 +43,10 @@ async function fetchImages() {
             refs.buttonLoad.classList.remove('invisible')
         }
         return {arrayImages,
-            totalHits: response.data.totalHits,}       
-        
-    } catch(error) {
+            totalHits: response.data.totalHits,
+        }        
+    }
+    catch (error) {
         console.log(error)
     }
 }
@@ -57,12 +59,19 @@ e.preventDefault()
   nameSearch = refs.input.value;
   nameSearch;
   refs.buttonLoad.classList.add('invisible')
+  currentPage = 1;
 
   fetchImages() 
-    .then(images => {
-      insertMarkup(images);
-      currentPage += 1;
-    }).catch(error => (console.log(error)))
+      .then(images => {
+         totalPages = Math.ceil(images.totalHits / perPage);
+          if (currentPage === totalPages) {
+              refs.buttonLoad.classList.add('invisible')
+          }
+        insertMarkup(images);
+        // currentPage += 1;
+        //   console.log(images);
+    })
+    .catch(error => (console.log(error)))
 
  
     lightbox = new SimpleLightbox('.gallery a', {
@@ -73,7 +82,8 @@ e.preventDefault()
 }
 
 
-function onLoadMoreBtn(){
+function onLoadMoreBtn() {
+    currentPage += 1;
     if (currentPage > totalPages) {
         refs.buttonLoad.classList.add('invisible');
         return toggleAlertPopup()
@@ -84,7 +94,8 @@ function onLoadMoreBtn(){
     fetchImages() 
     .then(images => {
       insertMarkup(images);   
-      currentPage += 1;})
+        // currentPage += 1;
+    })
     .catch(error => (console.log(error)))
 }
 
