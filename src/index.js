@@ -92,7 +92,11 @@ function onLoadMoreBtn() {
     nameSearch = refs.input.value;
 
     fetchImages() 
-    .then(images => {
+        .then(images => {
+        totalPages = Math.ceil(images.totalHits / perPage);
+          if (currentPage === totalPages) {
+              refs.buttonLoad.classList.add('invisible')
+          }
       insertMarkup(images);   
         // currentPage += 1;
     })
